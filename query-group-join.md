@@ -93,7 +93,7 @@ ORDER BY `degrees`.`name` ASC;
 
 ## Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica (54)
 ```sql
-SELECT `teachers`.`name` AS `teacher_name`, `teachers`.`surname` AS `teacher_surname`, `departments`.`name` AS `department_name`
+SELECT DISTINCT `teachers`.`name` AS `teacher_name`, `teachers`.`surname` AS `teacher_surname`, `departments`.`name` AS `department_name`
 FROM `course_teacher`
 JOIN `courses` ON `course_id` = `courses`.`id`
 JOIN `degrees` ON `degree_id` = `degrees`.`id`
@@ -113,4 +113,13 @@ JOIN `courses` ON `course_id` = `courses`.`id`
 WHERE `vote` >= 18
 GROUP BY `exams`.`id`, `courses`.`id`, `student_name`, `student_surname`, `course_name`;
 ```
- 
+
+```sql
+SELECT COUNT(`exam_id`) AS `exams_count`, `students`.`name` AS `student_name`, `students`.`surname` AS `student_surname`, `courses`.`name` AS `course_name`, MAX(`vote`) AS `max_vote`
+FROM `exam_student`
+JOIN `students` ON `student_id` = `students`.`id`
+JOIN `exams` ON `exam_id` = `exams`.`id`
+JOIN `courses` ON `course_id` = `courses`.`id`
+WHERE `vote` >= 18
+GROUP BY `exams`.`id`;
+```
