@@ -7,15 +7,6 @@ FROM `students`
 GROUP BY YEAR(`enrolment_date`);
 ```
 
-### Divisione per singolo esame
-```sql
-SELECT COUNT(`exam_id`) AS `exams_count`, AVG(`vote`) AS `average_vote`, `courses`.`name` AS `course_name`
-FROM `exam_student`
-JOIN `exams` ON `exam_id` = `exams`.`id`
-JOIN `courses` ON `course_id` = `courses`.`id`
-GROUP BY `exam_id`;
-```
-
 ## Contare gli insegnanti che hanno l'ufficio nello stesso edificio
 ```sql
 SELECT COUNT(*) AS `teachers_count`, `office_address`
@@ -27,6 +18,15 @@ GROUP BY `office_address`;
 ```sql
 SELECT COUNT(`exam_id`) AS `exams_count`, AVG(`vote`) AS `average_vote` 
 FROM `exam_student` 
+GROUP BY `exam_id`;
+```
+
+### Divisione per singolo esame
+```sql
+SELECT COUNT(`exam_id`) AS `exams_count`, AVG(`vote`) AS `average_vote`, `courses`.`name` AS `course_name`
+FROM `exam_student`
+JOIN `exams` ON `exam_id` = `exams`.`id`
+JOIN `courses` ON `course_id` = `courses`.`id`
 GROUP BY `exam_id`;
 ```
 
