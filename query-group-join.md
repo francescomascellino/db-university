@@ -110,7 +110,7 @@ FROM `exam_student`
 JOIN `students` ON `student_id` = `students`.`id`
 JOIN `exams` ON `exam_id` = `exams`.`id`
 JOIN `courses` ON `course_id` = `courses`.`id`
-WHERE `vote` >= 10
+WHERE `vote` >= 18
 GROUP BY `student_name`, `student_surname`, `course_name`;
 ```
  
